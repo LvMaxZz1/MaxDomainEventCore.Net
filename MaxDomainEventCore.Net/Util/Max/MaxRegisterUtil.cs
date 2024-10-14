@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using Autofac;
 using MaxDomainEventCore.Net.AutofacDependency.DependencyProperty;
 using MaxDomainEventCore.Net.Dependency;
 using MaxDomainEventCore.Net.DomainEvents;
+using MaxDomainEventCore.Net.Initiator;
 
-namespace MaxDomainEventCore.Net;
+namespace MaxDomainEventCore.Net.Util.Max;
 
 public abstract class MaxRegisterUtil
 {

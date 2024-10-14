@@ -1,7 +1,6 @@
-using System;
 using MaxDomainEventCore.Net.Dependency;
 
-namespace MaxDomainEventCore.Net;
+namespace MaxDomainEventCore.Net.Filter;
 
 internal interface IMaxDomainMessage : IDisposable, IMaxTransientDependency
 {

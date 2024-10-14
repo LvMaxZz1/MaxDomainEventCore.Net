@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace MaxUtil.Net;
+namespace MaxDomainEventCore.Net.Util.Max;
 
 public abstract class MaxDependencyInjectorUtil
 {

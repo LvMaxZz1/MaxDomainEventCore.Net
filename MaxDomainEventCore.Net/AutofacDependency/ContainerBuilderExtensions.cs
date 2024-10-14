@@ -3,6 +3,8 @@ using System.Reflection;
 using Autofac;
 using MaxDomainEventCore.Net.AutofacDependency.DependencyProperty;
 using MaxDomainEventCore.Net.DomainEvents;
+using MaxDomainEventCore.Net.Initiator;
+using MaxDomainEventCore.Net.Util.Max;
 using MaxUtil.Net.Type;
 
 namespace MaxDomainEventCore.Net.AutofacDependency;

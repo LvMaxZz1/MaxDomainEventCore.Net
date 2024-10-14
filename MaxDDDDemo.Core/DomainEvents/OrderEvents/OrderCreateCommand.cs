@@ -2,6 +2,7 @@ using MaxDDDDemo.Domain.Entities;
 using MaxDDDDemo.Domain.ValueObjectInterface;
 using MaxDomainEventCore.Net;
 using MaxDomainEventCore.Net.DomainEvents;
+using MaxDomainEventCore.Net.Initiator;
 
 namespace MaxDDDDemo.Core.DomainEvents.OrderEvents;
 

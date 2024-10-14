@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Autofac;
 using MaxDomainEventCore.Net.DomainEvents;
+using MaxDomainEventCore.Net.Filter;
+using MaxDomainEventCore.Net.Util.Max;
 using MaxUtil.Net;
 
-namespace MaxDomainEventCore.Net;
+namespace MaxDomainEventCore.Net.Initiator;
 
 public class DomainEventInitiator : IDomainEventInitiator
 {

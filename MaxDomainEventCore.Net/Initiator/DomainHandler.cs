@@ -1,8 +1,7 @@
-using System.Threading.Tasks;
 using MaxDomainEventCore.Net.Dependency;
 using MaxDomainEventCore.Net.DomainEvents;
 
-namespace MaxDomainEventCore.Net;
+namespace MaxDomainEventCore.Net.Initiator;
 
 public class DomainHandler : IMaxScopeDependency
 {

@@ -1,7 +1,6 @@
-using System.Threading.Tasks;
 using MaxDomainEventCore.Net.DomainEvents;
 
-namespace MaxDomainEventCore.Net;
+namespace MaxDomainEventCore.Net.Initiator;
 
 public interface IDomainEventInitiator
 {

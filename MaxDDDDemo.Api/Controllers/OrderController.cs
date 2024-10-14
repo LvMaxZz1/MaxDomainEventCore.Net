@@ -3,6 +3,7 @@ using DDDDemo.Core.Dtos;
 using MaxDDDDemo.Core.DomainEvents.OrderEvents;
 using MaxDDDDemo.Domain.Entities;
 using MaxDomainEventCore.Net;
+using MaxDomainEventCore.Net.Initiator;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MaxDDDDemo.Api.Controllers;

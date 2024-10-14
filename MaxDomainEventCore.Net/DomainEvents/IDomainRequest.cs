@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using MaxDomainEventCore.Net.Initiator;
 
 namespace MaxDomainEventCore.Net.DomainEvents;
 
