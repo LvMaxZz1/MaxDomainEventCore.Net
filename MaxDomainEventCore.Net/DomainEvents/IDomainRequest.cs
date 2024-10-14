@@ -6,5 +6,5 @@ public interface IDomainRequest<in T, TR> : IDomainEvent
     where T : class, IDomainEvent
     where TR : class, IDomainResponse
 {
-    Task<TR> Run(T @event, IDomainEventInitiator domainEventInitiator);
+    Task<TR> Run(IDomainEventInitiator domainEventInitiator);
 }

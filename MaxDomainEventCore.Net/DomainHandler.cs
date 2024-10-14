@@ -15,7 +15,7 @@ public class DomainHandler : IMaxScopeDependency
         where T : class, IDomainRequest<T, TR>
         where TR : class, IDomainResponse
     {
-        var response = await @event.Run(@event, domainEventInitiator);
+        var response = await @event.Run(domainEventInitiator);
         return response;
     }
 }
