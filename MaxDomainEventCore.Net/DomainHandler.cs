@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using MaxDomainEventCore.Net.Dependency;
 using MaxDomainEventCore.Net.DomainEvents;
 

@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace MaxDomainEventCore.Net.DomainEvents;
 
 public interface IDomainRequest<in T, TR> : IDomainEvent

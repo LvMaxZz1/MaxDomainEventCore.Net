@@ -1,4 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Autofac;
 using MaxDomainEventCore.Net.AutofacDependency.DependencyProperty;
 using MaxDomainEventCore.Net.Dependency;

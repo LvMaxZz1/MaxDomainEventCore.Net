@@ -1,3 +1,4 @@
+using System;
 using MaxDomainEventCore.Net.Dependency;
 
 namespace MaxDomainEventCore.Net;
