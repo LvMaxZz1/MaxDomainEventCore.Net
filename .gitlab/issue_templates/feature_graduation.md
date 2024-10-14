@@ -1,0 +1,12 @@
+## Checklist to be completed when graduating an experimental feature
+
+- [ ] Notify PM's and EM's that feature is ready for graduation
+- [ ] Contact PM for list of sample use cases
+- [ ] Verify there are sample implementations​ for each of the use cases
+- [ ] Verify telemetry and logging are complete
+- [ ] ​Verify API docs are complete and arrange to have them published
+- [ ] Make appropriate updates to Learn docs​
+- [ ] Make appropriate updates to Concept samples
+- [ ] Make appropriate updates to Blog posts
+- [ ] Verify there are no serious open Issues​​
+- [ ] Update table in EXPERIMENTS.md
