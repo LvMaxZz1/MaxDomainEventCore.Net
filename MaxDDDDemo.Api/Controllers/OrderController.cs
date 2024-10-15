@@ -3,6 +3,7 @@ using DDDDemo.Core.Dtos;
 using MaxDDDDemo.Core.DomainEvents.OrderEvents;
 using MaxDDDDemo.Domain.Entities;
 using MaxDomainEventCore.Net;
+using MaxDomainEventCore.Net.Initiator;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MaxDDDDemo.Api.Controllers;
@@ -33,7 +34,7 @@ public class OrderController : BaseController
     [ProducesResponseType<OrderDto>(200)]
     public async Task<IActionResult> GetOrder()
     {
-        var dto = await _domainEventInitiator.RequestAsync<OrderGetRequest, OrderDto>(new OrderGetRequest { OrderId = Guid.NewGuid() });
+        var dto = await _domainEventInitiator.SendAsync<OrderGetRequest, OrderDto>(new OrderGetRequest { OrderId = Guid.NewGuid() });
         return Ok(dto);
     }
 }

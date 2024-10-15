@@ -16,7 +16,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.Replace(ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory(containerBuilder =>
 {
-    containerBuilder.RegisterMaxEvent();
+    containerBuilder.RegisterMaxDomainEvent();
+    containerBuilder.RegisterMaxDomainEventInterceptor();
 }));
 
 var app = builder.Build();
