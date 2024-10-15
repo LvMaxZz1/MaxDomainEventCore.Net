@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <InvariantGlobalization>true</InvariantGlobalization>
+        <RootNamespace>MaxDDDDemo.Api</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MaxDDDDemo.Core\MaxDDDDemo.Core.csproj" />
+      <ProjectReference Include="..\LvMaxDomainEventCore.Net\LvMaxDomainEventCore.Net.csproj" />
+    </ItemGroup>
+
+</Project>
