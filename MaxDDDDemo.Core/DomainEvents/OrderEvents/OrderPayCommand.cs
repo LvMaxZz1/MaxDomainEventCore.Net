@@ -9,7 +9,7 @@ public class OrderPayCommand : IDomainCommand<OrderPayCommand>
 {
     public Order Order { get; set; } = null!;
 
-    public async Task Run(IDomainEventInitiator domainEventInitiator)
+    public async Task Run(IDomainEventInitiator domainEventInitiator, CancellationToken cancellationToken)
     {
         Console.WriteLine("OrderPayEvent 执行完毕");
     }

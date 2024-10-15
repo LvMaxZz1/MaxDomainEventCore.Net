@@ -30,7 +30,7 @@ public class DomainEventInitiator : IDomainEventInitiator
         {
             DomainEventInterceptorContext.Message = @event;
             var handler = DomainEventRegister.GetAllHandlers()
-                .FirstOrDefault(x => x.GetType() == typeof(Func<T, DomainEventInitiator, Task>));
+                .FirstOrDefault(x => x.GetType() == typeof(Func<T, DomainEventInitiator, CancellationToken, Task>));
 
             handler = RegisterNoResponseHandlerFuncIfNeeded(@event, handler);
 
@@ -38,7 +38,7 @@ public class DomainEventInitiator : IDomainEventInitiator
             MaxDependencyInjectorUtil.InjectDependenciesFromSource(resolveEvent, @event);
             
             await EventInterceptorPreserver.BeforeExecuteFilters(DomainEventInterceptorContext, cancellationToken);
-            await ((Func<T, DomainEventInitiator, Task>)handler).Invoke(@event, this);
+            await ((Func<T, DomainEventInitiator, CancellationToken, Task>)handler).Invoke(@event, this, cancellationToken);
             DomainEventInterceptorContext.Message = @event;
             DomainEventInterceptorContext.Response = null;
             await EventInterceptorPreserver.AfterExecuteFilters(DomainEventInterceptorContext, cancellationToken);
@@ -57,7 +57,7 @@ public class DomainEventInitiator : IDomainEventInitiator
             DomainEventInterceptorContext.Message = @event;
             TR response;
             var handler = DomainEventRegister.GetAllHandlers()
-                .FirstOrDefault(x => x.GetType() == typeof(Func<T, DomainEventInitiator, Task<TR>>));
+                .FirstOrDefault(x => x.GetType() == typeof(Func<T, DomainEventInitiator, CancellationToken, Task<TR>>));
 
             handler = RegisterHasResponseHandlerFuncIfNeeded<T, TR>(@event, handler);
 
@@ -65,7 +65,7 @@ public class DomainEventInitiator : IDomainEventInitiator
             MaxDependencyInjectorUtil.InjectDependenciesFromSource(resolveEvent, @event);
 
             await EventInterceptorPreserver.BeforeExecuteFilters(DomainEventInterceptorContext, cancellationToken);
-            response = await ((Func<T, DomainEventInitiator, Task<TR>>)handler).Invoke(@event, this);
+            response = await ((Func<T, DomainEventInitiator, CancellationToken, Task<TR>>)handler).Invoke(@event, this, cancellationToken);
             DomainEventInterceptorContext.Response = response;
             DomainEventInterceptorContext.Message = @event;
             await EventInterceptorPreserver.AfterExecuteFilters(DomainEventInterceptorContext, cancellationToken);
@@ -122,12 +122,12 @@ public class DomainEventRegister
 {
     private List<Delegate> Handlers { get; } = new();
 
-    public void RegisterNotResponse<T>(Func<T, DomainEventInitiator, Task> handler) where T : class, IDomainEvent
+    public void RegisterNotResponse<T>(Func<T, DomainEventInitiator, CancellationToken ,Task> handler) where T : class, IDomainEvent
     {
         Handlers.Add(handler);
     }
 
-    public void RegisterHasResponse<T, TR>(Func<T, DomainEventInitiator, Task<TR>> handler)
+    public void RegisterHasResponse<T, TR>(Func<T, DomainEventInitiator, CancellationToken, Task<TR>> handler)
         where T : class, IDomainEvent
     {
         Handlers.Add(handler);

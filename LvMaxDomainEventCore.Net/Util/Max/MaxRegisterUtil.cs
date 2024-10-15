@@ -208,7 +208,7 @@ public abstract class MaxRegisterUtil
     {
         var genericHandlerMethod = handlerMethod.MakeGenericMethod(eventType, returnType);
         var genericHandlerMethodFuncType =
-            typeof(Func<,,>).MakeGenericType(eventType, domainEventInitiator.GetType(),
+            typeof(Func<,,,>).MakeGenericType(eventType, domainEventInitiator.GetType(), typeof(CancellationToken), 
                 typeof(Task<>).MakeGenericType(returnType));
         var handlerFunc = Delegate.CreateDelegate(genericHandlerMethodFuncType, handler, genericHandlerMethod);
         return handlerFunc;
@@ -227,7 +227,7 @@ public abstract class MaxRegisterUtil
     {
         var genericHandlerMethod = handlerMethod.MakeGenericMethod(eventType);
         var genericHandlerMethodActionType =
-            typeof(Func<,,>).MakeGenericType(eventType, domainEventInitiator.GetType(), typeof(Task));
+            typeof(Func<,,,>).MakeGenericType(eventType, domainEventInitiator.GetType(), typeof(CancellationToken),typeof(Task));
         var handlerAction = Delegate.CreateDelegate(genericHandlerMethodActionType, handler, genericHandlerMethod);
         return handlerAction;
     }
