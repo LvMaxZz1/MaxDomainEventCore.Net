@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Title>This package helps to implement the mediator and domain events pattern, allowing you to focus on the implementation of logic without dealing with event subscription and service registration.</Title>
+        <Version>1.0.5</Version>
+        <Authors>LvMaxZz</Authors>
+        <Description>This package helps to implement the mediator and domain events pattern, allowing you to focus on the implementation of logic without dealing with event subscription and service registration.</Description>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageReleaseNotes>Add Domain Event Interceptor
+
+demonstrate：
+ContainerBuilder.RegisterMaxDomainEventInterceptor
+
+public class LogDomainEventEventInterceptor : MaxDomainEventInterceptor</PackageReleaseNotes>
+        <RepositoryUrl>https://gitlab.sjfood.us/ZEKE.Z/maxdomaineventcore.git</RepositoryUrl>
+        <PackageTags>Domain,DomainEvent,Event,Mediator,Core,LvMax</PackageTags>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="..\LICENSE">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Autofac" Version="8.1.1" />
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
+        <PackageReference Include="Castle.Core" Version="5.1.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
+    </ItemGroup>
+</Project>

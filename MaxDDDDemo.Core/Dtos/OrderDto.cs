@@ -1,4 +1,4 @@
-using MaxDomainEventCore.Net.DomainEvents;
+using LvMaxDomainEventCore.Net.DomainEvents;
 
 namespace DDDDemo.Core.Dtos;
 

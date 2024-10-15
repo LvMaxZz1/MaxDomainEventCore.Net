@@ -1,8 +1,8 @@
 using DDDDemo.Core.Dtos;
 using MaxDDDDemo.Domain.Entities;
 using MaxDDDDemo.Domain.ValueObjectInterface;
-using MaxDomainEventCore.Net.DomainEvents;
-using MaxDomainEventCore.Net.Initiator;
+using LvMaxDomainEventCore.Net.DomainEvents;
+using LvMaxDomainEventCore.Net.Initiator;
 
 namespace MaxDDDDemo.Core.DomainEvents.OrderEvents;
 
@@ -15,6 +15,5 @@ public class OrderCreateCommand : IDomainCommand<OrderCreateCommand>
         Order.Create(OrderAddress.Create(Order.Id, "武汉", "汉正街", "广益天下", "50050"));
         Console.WriteLine("OrderCreateEvent 执行完毕");
         var a = await domainEventInitiator.RequestAsync<OrderGetRequest, OrderDto>(new OrderGetRequest());
-        await domainEventInitiator.PublishAsync(new OrderCreateCommand());
     }
 }

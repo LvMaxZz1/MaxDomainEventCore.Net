@@ -1,6 +1,6 @@
 using DDDDemo.Core.Dtos;
-using MaxDomainEventCore.Net.DomainEvents;
-using MaxDomainEventCore.Net.Initiator;
+using LvMaxDomainEventCore.Net.DomainEvents;
+using LvMaxDomainEventCore.Net.Initiator;
 
 namespace MaxDDDDemo.Core.DomainEvents.OrderEvents;
 

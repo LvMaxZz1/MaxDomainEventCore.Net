@@ -1,5 +1,5 @@
 using Autofac.Extensions.DependencyInjection;
-using MaxDomainEventCore.Net.AutofacDependency;
+using LvMaxDomainEventCore.Net.AutofacDependency;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.Replace(ServiceDescriptor.Transient<IControllerActivator, ServiceBasedControllerActivator>());
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory(containerBuilder =>
 {
-    containerBuilder.RegisterMaxDomainEvent();
+    containerBuilder.RegisterMaxDomainEventInitiator();
     containerBuilder.RegisterMaxDomainEventInterceptor();
 }));
 
