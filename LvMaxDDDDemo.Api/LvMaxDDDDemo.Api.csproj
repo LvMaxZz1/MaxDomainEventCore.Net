@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <InvariantGlobalization>true</InvariantGlobalization>
+        <RootNamespace>MaxDDDDemo.Api</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MaxDDDDemo.Core\MaxDDDDemo.Core.csproj" />
+      <ProjectReference Include="..\LvMaxDDDDemo.Core\LvMaxDDDDemo.Core.csproj" />
       <ProjectReference Include="..\LvMaxDomainEventCore.Net\LvMaxDomainEventCore.Net.csproj" />
     </ItemGroup>
 
