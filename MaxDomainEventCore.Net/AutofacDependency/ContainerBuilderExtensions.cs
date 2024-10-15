@@ -1,17 +1,17 @@
-using System.Linq;
 using System.Reflection;
 using Autofac;
 using MaxDomainEventCore.Net.AutofacDependency.DependencyProperty;
 using MaxDomainEventCore.Net.DomainEvents;
 using MaxDomainEventCore.Net.Initiator;
+using MaxDomainEventCore.Net.Interceptor;
 using MaxDomainEventCore.Net.Util.Max;
-using MaxUtil.Net.Type;
+using MaxDomainEventCore.Net.Util.Type;
 
 namespace MaxDomainEventCore.Net.AutofacDependency;
 
 public static class ContainerBuilderExtensions
 {
-    public static void RegisterMaxEvent(this ContainerBuilder builder)
+    public static void RegisterMaxDomainEvent(this ContainerBuilder builder)
     {
         var handler = new DomainHandler();
         var eventBus = new DomainEventInitiator();
@@ -30,9 +30,15 @@ public static class ContainerBuilderExtensions
         builder.RegisterInstance(eventBus).AsSelf().AsImplementedInterfaces()
             .PropertiesAutowired(new MaxDependencyPropertySelector()).SingleInstance();
     }
+
+    public static void RegisterMaxEventFilter(this ContainerBuilder builder)
+    {
+        var filterPreserver = new MaxDomainEventInterceptorPreserver<IMaxDomainEventInterceptorContext<IDomainEvent, IDomainResponse>>();
+        var filterTypes = TypeUtil.ObtainImplementer<MaxDomainEventInterceptor>();
+
+        MaxRegisterUtil.RegisterDomainEventInterceptor(builder, filterTypes, filterPreserver);
+    }
 }
-
-
 
 internal interface IDomainEventRegisterName
 {

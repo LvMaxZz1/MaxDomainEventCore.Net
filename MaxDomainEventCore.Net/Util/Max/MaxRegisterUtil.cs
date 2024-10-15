@@ -4,12 +4,17 @@ using MaxDomainEventCore.Net.AutofacDependency.DependencyProperty;
 using MaxDomainEventCore.Net.Dependency;
 using MaxDomainEventCore.Net.DomainEvents;
 using MaxDomainEventCore.Net.Initiator;
+using MaxDomainEventCore.Net.Interceptor;
 
 namespace MaxDomainEventCore.Net.Util.Max;
 
 public abstract class MaxRegisterUtil
 {
-    public static void RegisterDependencies(ContainerBuilder builder)
+    /// <summary>
+    /// 注册对应生命周期的依赖注入
+    /// </summary>
+    /// <param name="builder"></param>
+    internal static void RegisterDependencies(ContainerBuilder builder)
     {
         foreach (var type in typeof(IMaxDependency).Assembly.GetTypes()
                      .Where(x => x.IsClass && typeof(IMaxDependency).IsAssignableFrom(x)))
@@ -52,7 +57,12 @@ public abstract class MaxRegisterUtil
         }
     }
 
-    public static void RegisterEvents(ContainerBuilder builder, List<Type> entityTypes)
+    /// <summary>
+    /// 注册Event
+    /// </summary>
+    /// <param name="builder"></param>
+    /// <param name="entityTypes"></param>
+    internal static void RegisterEvents(ContainerBuilder builder, List<System.Type> entityTypes)
     {
         foreach (var eventType in entityTypes)
         {
@@ -61,7 +71,15 @@ public abstract class MaxRegisterUtil
         }
     }
 
-    public static void RegisterHandlers(DomainHandler handler, List<Type> eventTypes,
+    /// <summary>
+    /// 注册Handler
+    /// </summary>
+    /// <param name="handler"></param>
+    /// <param name="eventTypes"></param>
+    /// <param name="domainEventRegister"></param>
+    /// <param name="domainEventInitiator"></param>
+    /// <exception cref="Exception"></exception>
+    internal static void RegisterHandlers(DomainHandler handler, List<System.Type> eventTypes,
         DomainEventRegister domainEventRegister, IDomainEventInitiator domainEventInitiator)
     {
         eventTypes.ForEach(eventType =>
@@ -108,8 +126,17 @@ public abstract class MaxRegisterUtil
         });
     }
 
+    /// <summary>
+    /// 注册无返回值的处理器
+    /// </summary>
+    /// <param name="handler"></param>
+    /// <param name="eventType"></param>
+    /// <param name="handlerMethod"></param>
+    /// <param name="domainEventRegister"></param>
+    /// <param name="domainEventInitiator"></param>
+    /// <exception cref="InvalidOperationException"></exception>
     private static void RegisterNotResponseHandler(
-        DomainHandler handler, Type eventType, MethodInfo handlerMethod, DomainEventRegister domainEventRegister,
+        DomainHandler handler, System.Type eventType, MethodInfo handlerMethod, DomainEventRegister domainEventRegister,
         IDomainEventInitiator domainEventInitiator)
     {
         var registerMethod = typeof(DomainEventRegister).GetMethod(nameof(DomainEventRegister.RegisterNotResponse));
@@ -133,8 +160,18 @@ public abstract class MaxRegisterUtil
         genericRegisterMethod.Invoke(domainEventRegister, [handlerAction]);
     }
 
+    /// <summary>
+    /// 注册有返回值的处理器
+    /// </summary>
+    /// <param name="handler"></param>
+    /// <param name="eventType"></param>
+    /// <param name="handlerMethod"></param>
+    /// <param name="returnType"></param>
+    /// <param name="domainEventRegister"></param>
+    /// <param name="domainEventInitiator"></param>
+    /// <exception cref="InvalidOperationException"></exception>
     private static void RegisterHasResponseHandler(
-        DomainHandler handler, Type eventType, MethodInfo handlerMethod, Type returnType,
+        DomainHandler handler, System.Type eventType, MethodInfo handlerMethod, System.Type returnType,
         DomainEventRegister domainEventRegister, IDomainEventInitiator domainEventInitiator)
     {
         var registerMethod = typeof(DomainEventRegister).GetMethod(nameof(DomainEventRegister.RegisterHasResponse));
@@ -157,8 +194,17 @@ public abstract class MaxRegisterUtil
         genericRegisterMethod.Invoke(domainEventRegister, [handlerFunc]);
     }
 
-    private static Delegate MakeHasResponseHandlerFunc(DomainHandler handler, Type eventType, MethodInfo handlerMethod,
-        Type returnType, IDomainEventInitiator domainEventInitiator)
+    /// <summary>
+    /// Make有返回值的Handler方法
+    /// </summary>
+    /// <param name="handler"></param>
+    /// <param name="eventType"></param>
+    /// <param name="handlerMethod"></param>
+    /// <param name="returnType"></param>
+    /// <param name="domainEventInitiator"></param>
+    /// <returns></returns>
+    private static Delegate MakeHasResponseHandlerFunc(DomainHandler handler, System.Type eventType, MethodInfo handlerMethod,
+        System.Type returnType, IDomainEventInitiator domainEventInitiator)
     {
         var genericHandlerMethod = handlerMethod.MakeGenericMethod(eventType, returnType);
         var genericHandlerMethodFuncType =
@@ -168,7 +214,15 @@ public abstract class MaxRegisterUtil
         return handlerFunc;
     }
 
-    public static Delegate MakeNotResponseHandlerFunc(DomainHandler handler, Type eventType, MethodInfo handlerMethod,
+    /// <summary>
+    /// Make无返回值的Handler方法
+    /// </summary>
+    /// <param name="handler"></param>
+    /// <param name="eventType"></param>
+    /// <param name="handlerMethod"></param>
+    /// <param name="domainEventInitiator"></param>
+    /// <returns></returns>
+    internal static Delegate MakeNotResponseHandlerFunc(DomainHandler handler, System.Type eventType, MethodInfo handlerMethod,
         IDomainEventInitiator domainEventInitiator)
     {
         var genericHandlerMethod = handlerMethod.MakeGenericMethod(eventType);
@@ -176,5 +230,29 @@ public abstract class MaxRegisterUtil
             typeof(Func<,,>).MakeGenericType(eventType, domainEventInitiator.GetType(), typeof(Task));
         var handlerAction = Delegate.CreateDelegate(genericHandlerMethodActionType, handler, genericHandlerMethod);
         return handlerAction;
+    }
+    
+    /// <summary>
+    /// 注册领域事件拦截器
+    /// </summary>
+    /// <param name="builder"></param>
+    /// <param name="filterTypes"></param>
+    /// <param name="eventInterceptorPreserver"></param>
+    internal static void RegisterDomainEventInterceptor(ContainerBuilder builder, List<System.Type> filterTypes,
+        MaxDomainEventInterceptorPreserver<IMaxDomainEventInterceptorContext<IDomainEvent, IDomainResponse>> eventInterceptorPreserver)
+    {
+        if (filterTypes.Any())
+        {
+            filterTypes.ForEach(x =>
+            {
+                var instance = Activator.CreateInstance(x);
+                if (instance is MaxDomainEventInterceptor filter)
+                {
+                    eventInterceptorPreserver.AddMaxDomainFilter(filter);
+                }
+            });
+        }
+
+        builder.RegisterInstance(eventInterceptorPreserver).AsSelf().AsImplementedInterfaces().SingleInstance();
     }
 }

@@ -1,8 +1,7 @@
 using Autofac;
 using MaxDomainEventCore.Net.DomainEvents;
-using MaxDomainEventCore.Net.Filter;
+using MaxDomainEventCore.Net.Interceptor;
 using MaxDomainEventCore.Net.Util.Max;
-using MaxUtil.Net;
 
 namespace MaxDomainEventCore.Net.Initiator;
 
@@ -14,54 +13,98 @@ public class DomainEventInitiator : IDomainEventInitiator
 
     private DomainHandler DomainHandler { get; set; }
 
-    private IMaxDomainMessage DomainMessage { get; set; }
-
-
-    public async Task PublishAsync<T>(T @event) where T : class, IDomainCommand<T>
+    private IMaxDomainEventInterceptorPreserver<IMaxDomainEventInterceptorContext<IDomainEvent, IDomainResponse>> EventInterceptorPreserver
     {
-        DomainMessage.Message = @event;
-        var handler = DomainEventRegister.GetAllHandlers()
-            .FirstOrDefault(x => x.GetType() == typeof(Func<T, DomainEventInitiator, Task>));
-
-        if (handler == null)
-        {
-            handler = MaxRegisterUtil.MakeNotResponseHandlerFunc(DomainHandler, @event.GetType(),
-                typeof(DomainHandler)
-                    .GetMethods().First(m =>
-                        m.Name.Contains(nameof(DomainHandler.Handle)) && m.GetGenericArguments().Length == 1), this);
-            DomainEventRegister.AddHandler(handler);
-        }
-
-        var resolveEvent = (T)LifetimeScope.Resolve(typeof(T));
-        MaxDependencyInjectorUtil.InjectDependenciesFromSource(resolveEvent, @event);
-        await ((Func<T, DomainEventInitiator, Task>)handler).Invoke(@event, this);
-        //方法拦截器完全结束后释放消息
-        DomainMessage.Dispose();
+        get;
+        set;
     }
 
-    public async Task<TR> RequestAsync<T, TR>(T @event) where T : class, IDomainEvent where TR : class, IDomainResponse
-    {
-        DomainMessage.Message = @event;
-        DomainMessage.Response = null;
-        var handler = DomainEventRegister.GetAllHandlers()
-            .FirstOrDefault(x => x.GetType() == typeof(Func<T, DomainEventInitiator, Task<TR>>));
+    private IMaxDomainEventInterceptorContext<IDomainEvent, IDomainResponse> DomainEventInterceptorContext { get; set; } =
+        new MaxDomainEventInterceptorContext<IDomainEvent, IDomainResponse>();
 
+
+    public async Task PublishAsync<T>(T @event, CancellationToken cancellationToken = default)
+        where T : class, IDomainCommand<T>
+    {
+        try
+        {
+            DomainEventInterceptorContext.Message = @event;
+            var handler = DomainEventRegister.GetAllHandlers()
+                .FirstOrDefault(x => x.GetType() == typeof(Func<T, DomainEventInitiator, Task>));
+
+            handler = RegisterNoResponseHandlerFuncIfNeeded(@event, handler);
+
+            var resolveEvent = (T)LifetimeScope.Resolve(typeof(T));
+            MaxDependencyInjectorUtil.InjectDependenciesFromSource(resolveEvent, @event);
+            
+            await EventInterceptorPreserver.BeforeExecuteFilters(DomainEventInterceptorContext, cancellationToken);
+            await ((Func<T, DomainEventInitiator, Task>)handler).Invoke(@event, this);
+            await EventInterceptorPreserver.AfterExecuteFilters(DomainEventInterceptorContext, cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            await EventInterceptorPreserver.OnException(ex, DomainEventInterceptorContext);
+        }
+    }
+
+    public async Task<TR> RequestAsync<T, TR>(T @event, CancellationToken cancellationToken = default)
+        where T : class, IDomainEvent where TR : class, IDomainResponse
+    {
+        try
+        {
+            DomainEventInterceptorContext.Message = @event;
+            TR response;
+            var handler = DomainEventRegister.GetAllHandlers()
+                .FirstOrDefault(x => x.GetType() == typeof(Func<T, DomainEventInitiator, Task<TR>>));
+
+            handler = RegisterHasResponseHandlerFuncIfNeeded<T, TR>(@event, handler);
+
+            var resolveEvent = (T)LifetimeScope.Resolve(typeof(T));
+            MaxDependencyInjectorUtil.InjectDependenciesFromSource(resolveEvent, @event);
+
+            await EventInterceptorPreserver.BeforeExecuteFilters(DomainEventInterceptorContext, cancellationToken);
+            response = await ((Func<T, DomainEventInitiator, Task<TR>>)handler).Invoke(@event, this);
+            DomainEventInterceptorContext.Response = response;
+            await EventInterceptorPreserver.AfterExecuteFilters(DomainEventInterceptorContext, cancellationToken);
+            return response;
+        }
+        catch (Exception ex)
+        { 
+            await EventInterceptorPreserver.OnException(ex, DomainEventInterceptorContext);
+            return (TR)default;
+        }
+    }
+    
+    private Delegate RegisterNoResponseHandlerFuncIfNeeded<T>(T @event, Delegate? handler)
+        where T : class, IDomainCommand<T>
+    {
         if (handler == null)
         {
             handler = MaxRegisterUtil.MakeNotResponseHandlerFunc(DomainHandler, @event.GetType(),
                 typeof(DomainHandler)
                     .GetMethods().First(m =>
-                        m.Name.Contains(nameof(DomainHandler.Handle)) && m.GetGenericArguments().Length == 2), this);
+                        m.Name.Contains(nameof(DomainHandler.Handle)) && m.GetGenericArguments().Length == 1),
+                this);
             DomainEventRegister.AddHandler(handler);
         }
 
-        var resolveEvent = (T)LifetimeScope.Resolve(typeof(T));
-        MaxDependencyInjectorUtil.InjectDependenciesFromSource(resolveEvent, @event);
-        var response = await ((Func<T, DomainEventInitiator, Task<TR>>)handler).Invoke(@event, this);
-        DomainMessage.Response = response;
-        //方法拦截器完全结束后释放消息
-        DomainMessage.Dispose();
-        return response;
+        return handler;
+    }
+
+    private Delegate RegisterHasResponseHandlerFuncIfNeeded<T, TR>(T @event, Delegate? handler)
+        where T : class, IDomainEvent where TR : class, IDomainResponse
+    {
+        if (handler == null)
+        {
+            handler = MaxRegisterUtil.MakeNotResponseHandlerFunc(DomainHandler, @event.GetType(),
+                typeof(DomainHandler)
+                    .GetMethods().First(m =>
+                        m.Name.Contains(nameof(DomainHandler.Handle)) && m.GetGenericArguments().Length == 2),
+                this);
+            DomainEventRegister.AddHandler(handler);
+        }
+
+        return handler;
     }
 }
 
@@ -74,7 +117,8 @@ public class DomainEventRegister
         Handlers.Add(handler);
     }
 
-    public void RegisterHasResponse<T, TR>(Func<T, DomainEventInitiator, Task<TR>> handler) where T : class, IDomainEvent
+    public void RegisterHasResponse<T, TR>(Func<T, DomainEventInitiator, Task<TR>> handler)
+        where T : class, IDomainEvent
     {
         Handlers.Add(handler);
     }

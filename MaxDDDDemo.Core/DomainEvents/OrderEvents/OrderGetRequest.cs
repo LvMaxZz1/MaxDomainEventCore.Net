@@ -1,5 +1,4 @@
 using DDDDemo.Core.Dtos;
-using MaxDomainEventCore.Net;
 using MaxDomainEventCore.Net.DomainEvents;
 using MaxDomainEventCore.Net.Initiator;
 
@@ -11,7 +10,7 @@ public class OrderGetRequest : IDomainRequest<OrderGetRequest, OrderDto>
 
     public Task<OrderDto> Run(IDomainEventInitiator domainEventInitiator)
     {
-        Console.WriteLine("OrderCancelEvent 执行完毕");
+        Console.WriteLine("OrderGetRequest 执行完毕");
         return Task.FromResult(new OrderDto{ Id = OrderId});
     }
 }
