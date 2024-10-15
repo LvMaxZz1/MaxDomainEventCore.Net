@@ -14,6 +14,7 @@ public class OrderCreateCommand : IDomainCommand<OrderCreateCommand>
     {
         Order.Create(OrderAddress.Create(Order.Id, "武汉", "汉正街", "广益天下", "50050"));
         Console.WriteLine("OrderCreateEvent 执行完毕");
-        await domainEventInitiator.RequestAsync<OrderGetRequest, OrderDto>(new OrderGetRequest());
+        var a = await domainEventInitiator.RequestAsync<OrderGetRequest, OrderDto>(new OrderGetRequest());
+        await domainEventInitiator.PublishAsync(new OrderCreateCommand());
     }
 }

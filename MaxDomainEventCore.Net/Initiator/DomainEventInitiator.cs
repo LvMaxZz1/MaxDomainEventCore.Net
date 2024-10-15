@@ -39,6 +39,8 @@ public class DomainEventInitiator : IDomainEventInitiator
             
             await EventInterceptorPreserver.BeforeExecuteFilters(DomainEventInterceptorContext, cancellationToken);
             await ((Func<T, DomainEventInitiator, Task>)handler).Invoke(@event, this);
+            DomainEventInterceptorContext.Message = @event;
+            DomainEventInterceptorContext.Response = null;
             await EventInterceptorPreserver.AfterExecuteFilters(DomainEventInterceptorContext, cancellationToken);
         }
         catch (Exception ex)
@@ -65,6 +67,7 @@ public class DomainEventInitiator : IDomainEventInitiator
             await EventInterceptorPreserver.BeforeExecuteFilters(DomainEventInterceptorContext, cancellationToken);
             response = await ((Func<T, DomainEventInitiator, Task<TR>>)handler).Invoke(@event, this);
             DomainEventInterceptorContext.Response = response;
+            DomainEventInterceptorContext.Message = @event;
             await EventInterceptorPreserver.AfterExecuteFilters(DomainEventInterceptorContext, cancellationToken);
             return response;
         }
@@ -74,7 +77,14 @@ public class DomainEventInitiator : IDomainEventInitiator
             return (TR)default;
         }
     }
-    
+
+    public async Task<TR> SendAsync<T, TR>(T @event, CancellationToken cancellationToken = default)
+        where T : class, IDomainEvent where TR : class, IDomainResponse
+    {
+        var response = await RequestAsync<T, TR>(@event, cancellationToken);
+        return response;
+    }
+
     private Delegate RegisterNoResponseHandlerFuncIfNeeded<T>(T @event, Delegate? handler)
         where T : class, IDomainCommand<T>
     {

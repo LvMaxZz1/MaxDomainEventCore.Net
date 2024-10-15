@@ -17,7 +17,7 @@ builder.Services.Replace(ServiceDescriptor.Transient<IControllerActivator, Servi
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory(containerBuilder =>
 {
     containerBuilder.RegisterMaxDomainEvent();
-    containerBuilder.RegisterMaxEventFilter();
+    containerBuilder.RegisterMaxDomainEventInterceptor();
 }));
 
 var app = builder.Build();

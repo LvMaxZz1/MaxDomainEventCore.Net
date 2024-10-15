@@ -31,7 +31,7 @@ public static class ContainerBuilderExtensions
             .PropertiesAutowired(new MaxDependencyPropertySelector()).SingleInstance();
     }
 
-    public static void RegisterMaxEventFilter(this ContainerBuilder builder)
+    public static void RegisterMaxDomainEventInterceptor(this ContainerBuilder builder)
     {
         var filterPreserver = new MaxDomainEventInterceptorPreserver<IMaxDomainEventInterceptorContext<IDomainEvent, IDomainResponse>>();
         var filterTypes = TypeUtil.ObtainImplementer<MaxDomainEventInterceptor>();
