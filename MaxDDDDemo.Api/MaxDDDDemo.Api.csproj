@@ -16,7 +16,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\MaxDDDDemo.Core\MaxDDDDemo.Core.csproj" />
-      <ProjectReference Include="..\LvMaxDomainEventCore.Net\LvMaxDomainEventCore.Net.csproj" />
     </ItemGroup>
 
 </Project>

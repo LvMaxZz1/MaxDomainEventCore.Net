@@ -24,7 +24,13 @@ public abstract class MaxDependencyInjectorUtil
             return;
         }
         // 遍历所有属性
-        var desPropertyInfos = destinationType.GetTypeInfo().DeclaredProperties;
+        var desPropertyInfos = destinationType.GetTypeInfo().DeclaredProperties
+            .Where(x => 
+                (x.PropertyType.IsInterface || x.PropertyType.IsClass || x.PropertyType.IsGenericType) && 
+                !x.PropertyType.IsPrimitive && 
+                x.PropertyType != typeof(string) && 
+                x.PropertyType != typeof(object) &&
+                !(x.PropertyType.IsGenericType && x.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>)));
         foreach (var desPropertyInfo in desPropertyInfos)
         {
             if (desPropertyInfo.CanWrite)

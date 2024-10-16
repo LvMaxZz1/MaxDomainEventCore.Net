@@ -59,7 +59,7 @@ public class DomainEventInitiator : IDomainEventInitiator
             var handler = DomainEventRegister.GetAllHandlers()
                 .FirstOrDefault(x => x.GetType() == typeof(Func<T, DomainEventInitiator, CancellationToken, Task<TR>>));
 
-            handler = RegisterHasResponseHandlerFuncIfNeeded<T, TR>(@event, handler);
+            handler = RegisterHasResponseHandlerFuncIfNeeded<T>(@event, handler);
 
             var resolveEvent = (T)LifetimeScope.Resolve(typeof(T));
             MaxDependencyInjectorUtil.InjectDependenciesFromSource(resolveEvent, @event);
@@ -101,8 +101,8 @@ public class DomainEventInitiator : IDomainEventInitiator
         return handler;
     }
 
-    private Delegate RegisterHasResponseHandlerFuncIfNeeded<T, TR>(T @event, Delegate? handler)
-        where T : class, IDomainEvent where TR : class, IDomainResponse
+    private Delegate RegisterHasResponseHandlerFuncIfNeeded<T>(T @event, Delegate? handler)
+        where T : class, IDomainEvent
     {
         if (handler == null)
         {

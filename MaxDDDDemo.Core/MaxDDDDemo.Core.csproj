@@ -9,7 +9,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\MaxDDDDemo.Domain\MaxDDDDemo.Domain.csproj" />
-      <ProjectReference Include="..\LvMaxDomainEventCore.Net\LvMaxDomainEventCore.Net.csproj" />
       <ProjectReference Include="..\MaxDomainEventCore.Net\MaxDomainEventCore.Net.csproj" />
     </ItemGroup>
 
