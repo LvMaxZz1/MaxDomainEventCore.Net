@@ -1,14 +1,11 @@
+using Autofac;
 using MaxDomainEventCore.Net.DomainEvents;
 
 namespace MaxDomainEventCore.Net.Interceptor;
 
-internal interface IMaxDomainEventInterceptorPreserver<T>
+internal interface IMaxDomainEventInterceptorPreserver<in T>
     where T : class, IMaxDomainEventInterceptorContext<IDomainEvent, IDomainResponse>
 {
-    List<IMaxDomainEventInterceptor<T>> Filters { get; }
-    
-    void AddMaxDomainFilter(IMaxDomainEventInterceptor<T> specification);
-
     Task BeforeExecuteFilters(T maxDomainFilterContext, CancellationToken cancellationToken);
 
     Task AfterExecuteFilters(T maxDomainFilterContext,
@@ -22,15 +19,35 @@ internal class MaxDomainEventInterceptorPreserver<T> : IMaxDomainEventIntercepto
 {
     private readonly List<IMaxDomainEventInterceptor<T>> _filters = new List<IMaxDomainEventInterceptor<T>>();
     
+    private  readonly List<Type> _interceptorTypes = new List<Type>();
+    
+    private ILifetimeScope LifetimeScope { get; set; }
+    
     private  int _index = 0;
 
     private bool IsExecuted => _index < _filters.Count;
 
     public List<IMaxDomainEventInterceptor<T>> Filters => _filters;
 
-    public void AddMaxDomainFilter(IMaxDomainEventInterceptor<T> specification)
+    internal void AddMaxDomainFilter(IMaxDomainEventInterceptor<T> specification)
     {
         _filters.Add(specification);
+    }
+
+    internal void AddMaxDomainFilterType(Type interceptorType)
+    {
+        if (typeof(MaxDomainEventInterceptor).IsAssignableFrom(interceptorType))
+        {
+            _interceptorTypes.Add(interceptorType);
+        }
+    }
+    
+    internal void AddMaxDomainFilterTypes(Type[] interceptorType)
+    {
+        foreach (var type in interceptorType)
+        {
+            AddMaxDomainFilterType(type);
+        }
     }
 
     public async Task BeforeExecuteFilters(T maxDomainFilterContext, CancellationToken cancellationToken)
@@ -79,5 +96,17 @@ internal class MaxDomainEventInterceptorPreserver<T> : IMaxDomainEventIntercepto
             await this.AfterExecuteAsyncNextAsync(maxDomainFilterContext, cancellationToken);
         }
         _index = 0;
+    }
+    
+    internal void InitializeInterceptor()
+    {
+        _interceptorTypes.ForEach(x =>
+        {
+            var interceptor = LifetimeScope.Resolve(x);
+            if (interceptor is MaxDomainEventInterceptor maxInterceptor)
+            {
+                AddMaxDomainFilter(maxInterceptor);
+            }
+        });
     }
 }

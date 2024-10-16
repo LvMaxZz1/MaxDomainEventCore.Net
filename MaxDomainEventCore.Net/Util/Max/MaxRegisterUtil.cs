@@ -243,16 +243,10 @@ public abstract class MaxRegisterUtil
     {
         if (filterTypes.Any())
         {
-            filterTypes.ForEach(x =>
-            {
-                var instance = Activator.CreateInstance(x);
-                if (instance is MaxDomainEventInterceptor filter)
-                {
-                    eventInterceptorPreserver.AddMaxDomainFilter(filter);
-                }
-            });
+            builder.RegisterTypes(filterTypes.ToArray()).AsSelf().InstancePerLifetimeScope();;
+            eventInterceptorPreserver.AddMaxDomainFilterTypes(filterTypes.ToArray());
         }
-
-        builder.RegisterInstance(eventInterceptorPreserver).AsSelf().AsImplementedInterfaces().SingleInstance();
+        
+        builder.RegisterInstance(eventInterceptorPreserver).AsSelf().AsImplementedInterfaces().PropertiesAutowired(new MaxDependencyPropertySelector()).SingleInstance();
     }
 }

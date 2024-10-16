@@ -1,4 +1,5 @@
 using Autofac.Extensions.DependencyInjection;
+using MaxDomainEventCore.Net.ApplicationBuilderExtend;
 using MaxDomainEventCore.Net.AutofacDependency;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -34,6 +35,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.InitializeMaxDomainEventInterceptor();
 
 app.Run();
 
