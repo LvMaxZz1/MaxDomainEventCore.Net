@@ -56,7 +56,7 @@ public abstract class TypeUtil
         {
             var currentTypes = AssemblyLoadContext.Default.LoadFromAssemblyName(new AssemblyName(lib.Name)).GetTypes()
                 .Where(x => x is { IsAbstract: false, IsClass: true, IsGenericType: true } && x.GetInterfaces().Any(i =>
-                    i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMaxDomainEventInterceptor<>))).ToList();
+                    i.IsGenericType && i.GetGenericTypeDefinition() == implementedBy)).ToList();
             if (currentTypes.Any()) entityTypes.AddRange(currentTypes);
         }
 
