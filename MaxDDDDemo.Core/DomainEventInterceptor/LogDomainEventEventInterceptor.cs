@@ -1,5 +1,5 @@
-﻿using MaxDomainEventCore.Net.DomainEvents;
-using MaxDomainEventCore.Net.Interceptor;
+﻿using MaxDomainEventCore.Net.Event.DomainEvents;
+using MaxDomainEventCore.Net.Interceptor.Interceptor;
 
 namespace MaxDDDDemo.Core.DomainEventInterceptor;
 

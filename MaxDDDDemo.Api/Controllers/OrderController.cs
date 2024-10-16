@@ -1,9 +1,8 @@
 using DDDDemo.Controllers;
-using DDDDemo.Core.Dtos;
 using MaxDDDDemo.Core.DomainEvents.OrderEvents;
+using MaxDDDDemo.Core.Dtos;
 using MaxDDDDemo.Domain.Entities;
-using MaxDomainEventCore.Net;
-using MaxDomainEventCore.Net.Initiator;
+using MaxDomainEventCore.Net.Event.DomainEvents;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MaxDDDDemo.Api.Controllers;

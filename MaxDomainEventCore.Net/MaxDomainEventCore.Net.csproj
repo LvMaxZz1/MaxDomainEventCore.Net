@@ -49,4 +49,8 @@ public class LogDomainEventEventInterceptor : MaxDomainEventInterceptor
         <HintPath>..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.1\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
       </Reference>
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MaxDomainEventCore.Net.Base\MaxDomainEventCore.Net.Base.csproj" />
+    </ItemGroup>
 </Project>

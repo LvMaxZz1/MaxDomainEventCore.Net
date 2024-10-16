@@ -1,6 +1,6 @@
-using MaxDomainEventCore.Net.DomainEvents;
+using MaxDomainEventCore.Net.Event.DomainEvents;
 
-namespace DDDDemo.Core.Dtos;
+namespace MaxDDDDemo.Core.Dtos;
 
 public class OrderDto : IDomainResponse
 {

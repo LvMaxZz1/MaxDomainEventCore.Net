@@ -1,7 +1,5 @@
 using MaxDDDDemo.Domain.Entities;
-using MaxDomainEventCore.Net;
-using MaxDomainEventCore.Net.DomainEvents;
-using MaxDomainEventCore.Net.Initiator;
+using MaxDomainEventCore.Net.Event.DomainEvents;
 
 namespace MaxDDDDemo.Core.DomainEvents.OrderEvents;
 

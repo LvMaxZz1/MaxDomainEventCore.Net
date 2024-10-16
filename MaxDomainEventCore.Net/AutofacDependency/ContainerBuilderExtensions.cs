@@ -1,11 +1,10 @@
 using System.Reflection;
 using Autofac;
-using MaxDomainEventCore.Net.AutofacDependency.DependencyProperty;
-using MaxDomainEventCore.Net.DomainEvents;
-using MaxDomainEventCore.Net.Initiator;
-using MaxDomainEventCore.Net.Interceptor;
-using MaxDomainEventCore.Net.Util.Max;
-using MaxDomainEventCore.Net.Util.Type;
+using MaxDomainEventCore.Net.Base.DependencyProperty;
+using MaxDomainEventCore.Net.Base.Initiator;
+using MaxDomainEventCore.Net.Base.Util.Type;
+using MaxDomainEventCore.Net.Event.DomainEvents;
+using MaxDomainEventCore.Net.Interceptor.Interceptor;
 
 namespace MaxDomainEventCore.Net.AutofacDependency;
 
@@ -23,9 +22,9 @@ public static class ContainerBuilderExtensions
 
         //反射找到所有实现了IDomainEvent的类,并且注册服务,同时注册对应handle方法
         var entityTypes = TypeUtil.ObtainImplementer<IDomainEvent>();
-        MaxRegisterUtil.RegisterEvents(builder, entityTypes);
-        MaxRegisterUtil.RegisterHandlers(handler, entityTypes, newRegister, eventBus);
-        MaxRegisterUtil.RegisterDependencies(builder);
+        MaxAutofacRegisterUtil.RegisterEvents(builder, entityTypes);
+        MaxAutofacRegisterUtil.RegisterHandlers(handler, entityTypes, newRegister, eventBus);
+        MaxAutofacRegisterUtil.RegisterDependencies(builder);
 
         builder.RegisterInstance(eventBus).AsSelf().AsImplementedInterfaces()
             .PropertiesAutowired(new MaxDependencyPropertySelector()).SingleInstance();
@@ -36,11 +35,6 @@ public static class ContainerBuilderExtensions
         var filterPreserver = new MaxDomainEventInterceptorPreserver<IMaxDomainEventInterceptorContext<IDomainEvent, IDomainResponse>>();
         var filterTypes = TypeUtil.ObtainImplementer<MaxDomainEventInterceptor>();
 
-        MaxRegisterUtil.RegisterDomainEventInterceptor(builder, filterTypes, filterPreserver);
+        MaxAutofacRegisterUtil.RegisterDomainEventInterceptor(builder, filterTypes, filterPreserver);
     }
-}
-
-internal interface IDomainEventRegisterName
-{
-    string DomainEventRegister { get; }
 }
