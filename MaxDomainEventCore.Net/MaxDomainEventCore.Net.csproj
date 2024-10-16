@@ -6,16 +6,26 @@
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Title>This package helps to implement the mediator and domain events pattern, allowing you to focus on the implementation of logic without dealing with event subscription and service registration.</Title>
-        <Version>1.0.6</Version>
+        <Version>1.0.7</Version>
         <Authors>LvMaxZz</Authors>
         <Description>This package helps to implement the mediator and domain events pattern, allowing you to focus on the implementation of logic without dealing with event subscription and service registration.</Description>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
-        <PackageReleaseNotes>Add Domain Event Interceptor
+        <PackageReleaseNotes>Dependency injection capability added to domain event interceptors
 
 demonstrate：
 ContainerBuilder.RegisterMaxDomainEventInterceptor
+app.InitializeMaxDomainEventInterceptor();
 
-public class LogDomainEventEventInterceptor : MaxDomainEventInterceptor</PackageReleaseNotes>
+
+public class LogDomainEventEventInterceptor : MaxDomainEventInterceptor
+{
+    private IService _service    
+
+    LogDomainEventEventInterceptor(IService service)
+   {
+        _service  = service
+   }
+}</PackageReleaseNotes>
         <RepositoryUrl>https://gitlab.sjfood.us/ZEKE.Z/maxdomaineventcore.git</RepositoryUrl>
         <PackageTags>Domain,DomainEvent,Event,Mediator,Core,LvMax</PackageTags>
     </PropertyGroup>
