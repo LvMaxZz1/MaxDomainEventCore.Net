@@ -4,7 +4,19 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>MaxDomainEventCore. Net Dependency package</Title>
+        <Authors>LvMaxZz</Authors>
+        <Description>Decouple does matter , A simple DomainEventInitiator for sending command, publishing event and request response with pipelines supported</Description>
+        <PackageTags>.Net,MaxDomainEventCore,DDD,Request,Command,Response,Mediator,DomainEvent,Domain,Cqrs</PackageTags>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="..\LICENSE">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Autofac" Version="8.1.1" />

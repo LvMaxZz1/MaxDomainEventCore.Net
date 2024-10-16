@@ -11,13 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxDDDDemo.Domain", "MaxDDD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxDomainEventCore.Net", "MaxDomainEventCore.Net\MaxDomainEventCore.Net.csproj", "{A45D4CB1-16BD-40D4-A952-CF48CB07772E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxDomainEventCore.Net.MicrosoftDependencyInjection", "MaxDomainEventCore.Net.MicrosoftDependencyInjection\MaxDomainEventCore.Net.MicrosoftDependencyInjection.csproj", "{2D1DE1B7-475C-414E-B171-1E67863DBA75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxDomainEventCore.Net.MicrosoftDependencyInjection", "MaxDomainEventCore.Net.MicrosoftDependencyInjection\MaxDomainEventCore.Net.MicrosoftDependencyInjection.csproj", "{2D1DE1B7-475C-414E-B171-1E67863DBA75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxDomainEventCore.Net.Base", "MaxDomainEventCore.Net.Base\MaxDomainEventCore.Net.Base.csproj", "{02E0BA79-1E3D-4C3C-AA78-A61FC4C52EAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxDomainEventCore.Net.Base", "MaxDomainEventCore.Net.Base\MaxDomainEventCore.Net.Base.csproj", "{02E0BA79-1E3D-4C3C-AA78-A61FC4C52EAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxDomainEventCore.Net.Interceptor", "MaxDomainEventCore.Net.Interceptor\MaxDomainEventCore.Net.Interceptor.csproj", "{B807A27F-B25D-4A59-822E-D698A2485D18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxDomainEventCore.Net.Interceptor", "MaxDomainEventCore.Net.Interceptor\MaxDomainEventCore.Net.Interceptor.csproj", "{B807A27F-B25D-4A59-822E-D698A2485D18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxDomainEventCore.Net.Event", "MaxDomainEventCore.Net.Event\MaxDomainEventCore.Net.Event.csproj", "{A933E648-409E-4A75-B938-BD6DD4A9C57A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxDomainEventCore.Net.Event", "MaxDomainEventCore.Net.Event\MaxDomainEventCore.Net.Event.csproj", "{A933E648-409E-4A75-B938-BD6DD4A9C57A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,16 +45,16 @@ Global
 		{2D1DE1B7-475C-414E-B171-1E67863DBA75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D1DE1B7-475C-414E-B171-1E67863DBA75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D1DE1B7-475C-414E-B171-1E67863DBA75}.Release|Any CPU.Build.0 = Release|Any CPU
-		{02E0BA79-1E3D-4C3C-AA78-A61FC4C52EAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02E0BA79-1E3D-4C3C-AA78-A61FC4C52EAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02E0BA79-1E3D-4C3C-AA78-A61FC4C52EAA}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{02E0BA79-1E3D-4C3C-AA78-A61FC4C52EAA}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{02E0BA79-1E3D-4C3C-AA78-A61FC4C52EAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02E0BA79-1E3D-4C3C-AA78-A61FC4C52EAA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B807A27F-B25D-4A59-822E-D698A2485D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B807A27F-B25D-4A59-822E-D698A2485D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B807A27F-B25D-4A59-822E-D698A2485D18}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{B807A27F-B25D-4A59-822E-D698A2485D18}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{B807A27F-B25D-4A59-822E-D698A2485D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B807A27F-B25D-4A59-822E-D698A2485D18}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A933E648-409E-4A75-B938-BD6DD4A9C57A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A933E648-409E-4A75-B938-BD6DD4A9C57A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A933E648-409E-4A75-B938-BD6DD4A9C57A}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{A933E648-409E-4A75-B938-BD6DD4A9C57A}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{A933E648-409E-4A75-B938-BD6DD4A9C57A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A933E648-409E-4A75-B938-BD6DD4A9C57A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

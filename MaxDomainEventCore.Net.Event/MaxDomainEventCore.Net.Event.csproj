@@ -4,6 +4,18 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>Provide domain event interface</Title>
+        <Authors>LvMaxZz</Authors>
+        <Description>Provide a domain event interface, where classes implementing the interface can send publishing requests through the domain event initiator interface</Description>
+        <PackageTags>.Net,MaxDomainEventCore,DDD,Request,Command,Response,Mediator,DomainEvent,Domain,Cqrs</PackageTags>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="..\LICENSE">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
 
 </Project>

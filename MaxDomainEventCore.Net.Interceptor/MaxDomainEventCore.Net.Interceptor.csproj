@@ -4,7 +4,19 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>Domain event interceptors, similar to pipelines, can perform AOP operations on the implementation of the IDomainEvent interface</Title>
+        <Authors>LvMaxZz</Authors>
+        <Description>Domain event interceptors, similar to pipelines, can perform AOP operations on the implementation of the IDomainEvent interface</Description>
+        <PackageTags>.Net,MaxDomainEventCore,DDD,Request,Command,Response,Mediator,DomainEvent,Domain,Cqrs</PackageTags>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="..\LICENSE">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\MaxDomainEventCore.Net.Event\MaxDomainEventCore.Net.Event.csproj" />
