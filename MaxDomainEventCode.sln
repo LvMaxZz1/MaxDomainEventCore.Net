@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxDDDDemo.Api", "MaxDDDDemo.Api\MaxDDDDemo.Api.csproj", "{B3A71B3C-1F32-4742-8D28-174D064206DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxDDDDemo.Api", "MaxDDDDemo.Api\MaxDDDDemo.Api.csproj", "{B3A71B3C-1F32-4742-8D28-174D064206DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxDDDDemo.Core", "MaxDDDDemo.Core\MaxDDDDemo.Core.csproj", "{757F0331-9BEF-4610-94A6-AE970E95655C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxDDDDemo.Core", "MaxDDDDemo.Core\MaxDDDDemo.Core.csproj", "{757F0331-9BEF-4610-94A6-AE970E95655C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxDDDDemo.Domain", "MaxDDDDemo.Domain\MaxDDDDemo.Domain.csproj", "{3AA1DF79-13D1-4385-9774-9C424F09F91A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxDDDDemo.Domain", "MaxDDDDemo.Domain\MaxDDDDemo.Domain.csproj", "{3AA1DF79-13D1-4385-9774-9C424F09F91A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxDomainEventCore.Net", "MaxDomainEventCore.Net\MaxDomainEventCore.Net.csproj", "{A45D4CB1-16BD-40D4-A952-CF48CB07772E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxDomainEventCore.Net", "MaxDomainEventCore.Net\MaxDomainEventCore.Net.csproj", "{A45D4CB1-16BD-40D4-A952-CF48CB07772E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,8 +29,8 @@ Global
 		{3AA1DF79-13D1-4385-9774-9C424F09F91A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AA1DF79-13D1-4385-9774-9C424F09F91A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AA1DF79-13D1-4385-9774-9C424F09F91A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A45D4CB1-16BD-40D4-A952-CF48CB07772E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A45D4CB1-16BD-40D4-A952-CF48CB07772E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A45D4CB1-16BD-40D4-A952-CF48CB07772E}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{A45D4CB1-16BD-40D4-A952-CF48CB07772E}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{A45D4CB1-16BD-40D4-A952-CF48CB07772E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A45D4CB1-16BD-40D4-A952-CF48CB07772E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

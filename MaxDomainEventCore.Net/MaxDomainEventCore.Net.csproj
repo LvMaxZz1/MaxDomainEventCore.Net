@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Title>This package helps to implement the mediator and domain events pattern, allowing you to focus on the implementation of logic without dealing with event subscription and service registration.</Title>
-        <Version>1.0.7</Version>
+        <Version>1.0.6</Version>
         <Authors>LvMaxZz</Authors>
         <Description>This package helps to implement the mediator and domain events pattern, allowing you to focus on the implementation of logic without dealing with event subscription and service registration.</Description>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
