@@ -1,0 +1,4 @@
+C:\VsDemo代码文件\maxdomaineventcore\MaxDDDDemo.Domain\obj\Debug\net6.0\MaxDDDDemo.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\VsDemo代码文件\maxdomaineventcore\MaxDDDDemo.Domain\obj\Debug\net6.0\MaxDDDDemo.Domain.AssemblyInfoInputs.cache
+C:\VsDemo代码文件\maxdomaineventcore\MaxDDDDemo.Domain\obj\Debug\net6.0\MaxDDDDemo.Domain.AssemblyInfo.cs
+C:\VsDemo代码文件\maxdomaineventcore\MaxDDDDemo.Domain\obj\Debug\net6.0\MaxDDDDemo.Domain.csproj.CoreCompileInputs.cache

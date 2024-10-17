@@ -1,0 +1,12 @@
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net.Base\bin\Debug\net8.0\MaxDomainEventCore.Net.Base.deps.json
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net.Base\bin\Debug\net8.0\MaxDomainEventCore.Net.Base.dll
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net.Base\bin\Debug\net8.0\MaxDomainEventCore.Net.Base.pdb
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net.Base\obj\Debug\net8.0\MaxDomainEventCore.Net.Base.csproj.AssemblyReference.cache
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net.Base\obj\Debug\net8.0\MaxDomainEventCore.Net.Base.GeneratedMSBuildEditorConfig.editorconfig
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net.Base\obj\Debug\net8.0\MaxDomainEventCore.Net.Base.AssemblyInfoInputs.cache
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net.Base\obj\Debug\net8.0\MaxDomainEventCore.Net.Base.AssemblyInfo.cs
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net.Base\obj\Debug\net8.0\MaxDomainEventCore.Net.Base.csproj.CoreCompileInputs.cache
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net.Base\obj\Debug\net8.0\MaxDomainEventCore.Net.Base.dll
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net.Base\obj\Debug\net8.0\refint\MaxDomainEventCore.Net.Base.dll
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net.Base\obj\Debug\net8.0\MaxDomainEventCore.Net.Base.pdb
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net.Base\obj\Debug\net8.0\ref\MaxDomainEventCore.Net.Base.dll

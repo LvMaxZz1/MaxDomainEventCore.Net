@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8aerM/1dCeSxQTiM5GUUrglKyyz2s+PYPiSx/HT+we5UsqfomznFoKqJtzO68U13BmnSChlzpURy9AH3dgyCVA==",
+  "success": true,
+  "projectFilePath": "C:\\VsDemo代码文件\\maxdomaineventcore\\MaxDomainEventCore.Net.MicrosoftDependencyInjection\\MaxDomainEventCore.Net.MicrosoftDependencyInjection.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zeke.z\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.1\\microsoft.extensions.dependencyinjection.abstractions.8.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

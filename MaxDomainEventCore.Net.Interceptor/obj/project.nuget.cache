@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "r5IX0I4QtVg5vbDR7W84lvP73B29UUUdGZ2V/+qrZ3QkvWEggl2WYgfNmKZAIHaSmudxZNWvTZ0NG0VRJe/k8A==",
+  "success": true,
+  "projectFilePath": "C:\\VsDemo代码文件\\maxdomaineventcore\\MaxDomainEventCore.Net.Interceptor\\MaxDomainEventCore.Net.Interceptor.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zeke.z\\.nuget\\packages\\autofac\\8.1.1\\autofac.8.1.1.nupkg.sha512",
+    "C:\\Users\\zeke.z\\.nuget\\packages\\system.diagnostics.diagnosticsource\\8.0.1\\system.diagnostics.diagnosticsource.8.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

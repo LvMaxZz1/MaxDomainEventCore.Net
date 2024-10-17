@@ -26,8 +26,8 @@ public class LogDomainEventEventInterceptor : MaxDomainEventInterceptor
         _service  = service
    }
 }</PackageReleaseNotes>
-        <RepositoryUrl>https://gitlab.sjfood.us/ZEKE.Z/maxdomaineventcore.git</RepositoryUrl>
-        <PackageTags>ddd,request,response,command,notifications,Domain,DomainEvent,Event,Mediator,Core,LvMax</PackageTags>
+        <RepositoryUrl>https://github.com/LvMaxZz1/MaxDomainEventCore.Net.git</RepositoryUrl>
+        <PackageTags>.Net,DomainEvent,DomainEventInitiator,DDD,Request,Response,Command,Notifications,Domain,DomainEvent,Event,Mediator,Core,LvMax</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>

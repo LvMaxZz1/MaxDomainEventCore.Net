@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>MaxDomainEventCore.Net</id>
+    <version>1.0.4</version>
+    <title>This package helps to implement the mediator and domain events pattern, allowing you to focus on the implementation of logic without dealing with event subscription and service registration.</title>
+    <authors>LvMaxZz</authors>
+    <license type="file">LICENSE</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <description>This package helps to implement the mediator and domain events pattern, allowing you to focus on the implementation of logic without dealing with event subscription and service registration.</description>
+    <releaseNotes>调整依赖</releaseNotes>
+    <repository type="git" url="https://gitlab.sjfood.us/ZEKE.Z/maxdomaineventcore.git" commit="1130e34706d0e90c70f78cdc12f6d901b181ed82" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="MaxUtil.Net" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Autofac" version="8.1.1" exclude="Build,Analyzers" />
+        <dependency id="Autofac.Extensions.DependencyInjection" version="10.0.0" exclude="Build,Analyzers" />
+        <dependency id="Castle.Core" version="5.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.DependencyModel" version="2.1.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net\bin\Release\net8.0\MaxDomainEventCore.Net.dll" target="lib\net8.0\MaxDomainEventCore.Net.dll" />
+    <file src="C:\VsDemo代码文件\maxdomaineventcore\LICENSE" target="\LICENSE" />
+  </files>
+</package>

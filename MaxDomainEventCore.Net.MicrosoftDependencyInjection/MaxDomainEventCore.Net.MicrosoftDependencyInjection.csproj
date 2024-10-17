@@ -4,6 +4,11 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Authors>LvMaxZz</Authors>
+        <RepositoryUrl>https://github.com/LvMaxZz1/MaxDomainEventCore.Net.git</RepositoryUrl>
+        <PackageTags>.Net,DomainEvent,DomainEventInitiator,DDD,Request,Response,Command,Domain,Event,Mediator</PackageTags>
+        <Description>This package helps to implement the mediator and domain events pattern, allowing you to focus on the implementation of logic without dealing with event subscription and service registration.</Description>
+        <Title>MaxDomainEventCore.Net.MicrosoftDependencyInjection</Title>
     </PropertyGroup>
 
     <ItemGroup>

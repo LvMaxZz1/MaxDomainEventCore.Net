@@ -1,0 +1,5 @@
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net\obj\Release\net5.0\MaxDomainEventCore.Net.csproj.AssemblyReference.cache
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net\obj\Release\net5.0\MaxDomainEventCore.Net.GeneratedMSBuildEditorConfig.editorconfig
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net\obj\Release\net5.0\MaxDomainEventCore.Net.AssemblyInfoInputs.cache
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net\obj\Release\net5.0\MaxDomainEventCore.Net.AssemblyInfo.cs
+C:\VsDemo代码文件\maxdomaineventcore\MaxDomainEventCore.Net\obj\Release\net5.0\MaxDomainEventCore.Net.csproj.CoreCompileInputs.cache

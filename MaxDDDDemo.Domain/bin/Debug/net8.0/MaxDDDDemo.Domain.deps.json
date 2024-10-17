@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "MaxDDDDemo.Domain/1.0.0": {
+        "runtime": {
+          "MaxDDDDemo.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MaxDDDDemo.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
